@@ -1,13 +1,17 @@
+import Link from "next/link";
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'dark' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
+  href?: string;
 }
 
 export default function Button({
   variant = 'primary',
   size = 'md',
   fullWidth = false,
+  href,
   className,
   children,
   ...props
@@ -30,12 +34,23 @@ export default function Button({
 
   const widthClass = fullWidth ? "w-full" : "";
 
-  return (
-    <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${widthClass} ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
+  if (!href) {
+    return (
+      <button
+        className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${widthClass} ${className}`}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  } else {
+    return (
+      <Link
+        className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${widthClass} ${className}`}
+        href={href}
+      >
+        {children}
+      </Link>
+    );
+  }
 };

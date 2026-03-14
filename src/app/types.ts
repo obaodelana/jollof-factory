@@ -9,10 +9,14 @@ export interface Step {
 
 export interface Recipe {
     id: number;
+    slug: string;
     title: string;
     description: string;
     image: string;
     link: string;
+    cookingTime?: string;
+    ingredients: string[];
+    directions: string[];
 }
 
 export interface ValueProp {

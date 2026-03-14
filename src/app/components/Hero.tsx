@@ -34,7 +34,7 @@ export default function Hero() {
 
         <div className="flex flex-col sm:flex-row gap-6">
           <Button size="lg" variant="secondary" className="text-xl">Shop The Base</Button>
-          <Button size="lg" variant="outline" className="bg-white text-dark hover:bg-gray-100 border-white hover:border-white">View Recipes</Button>
+          <Button href="/recipes" size="lg" variant="outline" className="bg-white text-dark hover:bg-gray-100 border-white hover:border-white">View Recipes</Button>
         </div>
       </div>
 
