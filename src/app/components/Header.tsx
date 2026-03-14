@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import Button from './Button';
-import Link from 'next/link';
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import Button from "./Button";
+import Link from "next/link";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Recipes', href: '/recipes' },
-    { label: 'Story', href: '/story' },
+    { label: "Recipes", href: "/recipes" },
+    { label: "About", href: "/story" },
   ];
 
   return (
@@ -42,14 +42,16 @@ export default function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-4">
-          <Button size="md" variant="dark">Get The Sauce</Button>
+          <Button size="md" variant="dark">
+            Get The Sauce
+          </Button>
         </div>
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-dark p-2 border-2 border-dark bg-white shadow-neo active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all"
+            className="text-dark p-2 border-2 border-dark bg-white shadow-neo active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -78,9 +80,15 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          <Button size="lg" fullWidth onClick={() => setIsMobileMenuOpen(false)}>Get The Sauce</Button>
+          <Button
+            size="lg"
+            fullWidth
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Get The Sauce
+          </Button>
         </div>
       )}
     </header>
   );
-};
+}
