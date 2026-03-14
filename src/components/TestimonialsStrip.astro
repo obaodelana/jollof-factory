@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+
+const testimonials = await getCollection('testimonials');
+---
+
+<section class="w-full bg-secondary py-12 border-b-2 border-dark">
+  <div class="mx-auto max-w-7xl px-4 md:px-8">
+    <!-- Mobile: Swipeable Carousel -->
+    <div class="md:hidden">
+      <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-4 px-4">
+        {testimonials.map((testimonial) => {
+          const quoteWithEmphasis = testimonial.data.quote.replace(
+            testimonial.data.emphasized,
+            `<b class="text-primary">${testimonial.data.emphasized}</b>`
+          );
+          return (
+            <div class="snap-center shrink-0 w-[80%] bg-white border-2 border-dark shadow-neo p-6 flex flex-col justify-between">
+              <p
+                class="text-2xl font-marker mb-4 text-dark"
+                set:html={quoteWithEmphasis}
+              />
+              <div>
+                <cite class="font-bold text-dark not-italic block">
+                  — {testimonial.data.name}
+                </cite>
+                {testimonial.data.context && (
+                  <span class="text-sm text-gray-600 block">
+                    {testimonial.data.context}
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Desktop: 3-Up Grid -->
+    <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => {
+        const quoteWithEmphasis = testimonial.data.quote.replace(
+          testimonial.data.emphasized,
+          `<b class="text-primary">${testimonial.data.emphasized}</b>`
+        );
+        return (
+          <div class="bg-white border-2 border-dark shadow-neo p-8 flex flex-col justify-between hover:-translate-y-1 transition-transform">
+            <blockquote class="flex flex-col h-full">
+              <p
+                class="text-2xl font-marker mb-4 text-dark grow"
+                set:html={quoteWithEmphasis}
+              />
+              <footer class="mt-4">
+                <cite class="font-bold text-dark not-italic block">
+                  — {testimonial.data.name}
+                </cite>
+                {testimonial.data.context && (
+                  <span class="text-sm text-gray-600 block">
+                    {testimonial.data.context}
+                  </span>
+                )}
+              </footer>
+            </blockquote>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const recipes = await getCollection('recipes');
+const sortedRecipes = recipes.sort((a, b) => a.data.id - b.data.id);
+---
+
+<Layout title="Our Recipes - Jollof Factory">
+  <div class="w-full bg-cream">
+    <!-- Page Header -->
+    <header class="bg-secondary border-b-2 border-dark py-20 text-center">
+      <div class="mx-auto max-w-7xl px-4 md:px-8">
+        <h1 class="text-6xl md:text-8xl font-display uppercase text-dark">Our Recipes</h1>
+        <p class="mt-4 text-xl font-bold text-dark/80 max-w-2xl mx-auto">
+          Bold, soulful meals made simple with Jollof Factory as your secret weapon.
+        </p>
+      </div>
+    </header>
+
+    <!-- Recipes List -->
+    <main class="py-20">
+      <div class="mx-auto max-w-5xl px-4 md:px-8 flex flex-col gap-24">
+        {sortedRecipes.map((recipe) => (
+          <article id={recipe.data.slug} class="w-full scroll-mt-24">
+            <div class="bg-white border-2 border-dark shadow-neo-xl p-4">
+              <!-- Recipe Image -->
+              <div class="relative mb-8">
+                <img src={recipe.data.image} alt={recipe.data.title} class="w-full aspect-video object-cover border-2 border-dark" />
+                {recipe.data.cookingTime && (
+                  <div class="absolute bottom-4 -right-4 bg-primary text-white font-display uppercase px-4 py-2 border-2 border-dark shadow-neo">
+                    Time: {recipe.data.cookingTime}
+                  </div>
+                )}
+              </div>
+
+              <!-- Recipe Content -->
+              <div class="px-4 pb-4">
+                <h2 class="text-4xl md:text-5xl font-display uppercase text-primary mb-4">{recipe.data.title}</h2>
+                <p class="text-lg font-bold text-dark/70 mb-10">{recipe.data.description}</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                  <!-- Ingredients -->
+                  <div class="md:col-span-1">
+                    <h3 class="font-display text-2xl uppercase border-b-2 border-dark pb-2 mb-4">Ingredients</h3>
+                    <ul class="list-disc list-inside flex flex-col gap-2 font-medium text-dark">
+                      {recipe.data.ingredients.map((ing) => (
+                        <li>{ing}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Directions -->
+                  <div class="md:col-span-2">
+                    <h3 class="font-display text-2xl uppercase border-b-2 border-dark pb-2 mb-4">Directions</h3>
+                    <ol class="flex flex-col gap-4">
+                      {recipe.data.directions.map((dir, i) => (
+                        <li class="flex gap-4">
+                          <span class="shrink-0 bg-secondary text-dark font-display h-8 w-8 flex items-center justify-center border-2 border-dark text-lg">{i + 1}</span>
+                          <p class="font-medium text-dark self-center">{dir}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<!-- Client-side hash navigation script -->
+<script>
+  // Handle scrolling to a specific recipe if a hash is present
+  function handleHashNavigation() {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.substring(1); // Remove the '#'
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  // Run on page load
+  handleHashNavigation();
+
+  // Run on hash change
+  window.addEventListener('hashchange', handleHashNavigation);
+</script>

@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Button from './Button.astro';
+
+const recipes = await getCollection('recipes');
+const sortedRecipes = recipes.sort((a, b) => a.data.id - b.data.id);
+// Show the first 3 recipes on the homepage grid
+const featuredRecipes = sortedRecipes.slice(0, 3);
+---
+
+<section id="recipes" class="w-full bg-[#e5e5e5] py-20 border-b-2 border-dark">
+  <div class="mx-auto max-w-7xl px-4 md:px-8">
+    <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+      <div class="relative">
+        <div class="absolute -top-6 -left-4 bg-primary text-white px-2 py-1 font-marker -rotate-6">Not just rice!</div>
+        <h2 class="text-5xl md:text-7xl font-display uppercase text-dark leading-none">
+          Cook <br /><span class="text-accent">Anything</span>
+        </h2>
+      </div>
+
+      <a href="/recipes">
+        <Button variant="outline">View All Recipes</Button>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {featuredRecipes.map((recipe) => (
+        <a href={`/recipes#${recipe.data.slug}`} class="block group">
+          <div
+            class="relative bg-white border-2 border-dark p-3 shadow-neo hover:shadow-neo-lg hover:-translate-y-1 transition-all duration-300 h-full"
+          >
+            <div
+              class="w-full aspect-4/3 bg-cover bg-center border-2 border-dark grayscale group-hover:grayscale-0 transition-all duration-500 mb-4"
+              style={`background-image: url("${recipe.data.image}")`}
+              aria-label={recipe.data.title}
+            ></div>
+
+            <div class="px-2 pb-2">
+              <h3 class="text-2xl font-black text-dark uppercase group-hover:text-primary transition-colors">
+                {recipe.data.title}
+              </h3>
+              <p class="text-dark text-lg font-bold opacity-70">
+                {recipe.data.description}
+              </p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

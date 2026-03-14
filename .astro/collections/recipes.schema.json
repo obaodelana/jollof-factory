@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "cookingTime": {
+      "type": "string"
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "directions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "slug",
+    "title",
+    "description",
+    "image",
+    "ingredients",
+    "directions"
+  ],
+  "additionalProperties": false
+}
