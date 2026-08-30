@@ -4,6 +4,7 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   href?: string;
+  target?: string;
   class?: string;
 }
 
@@ -12,6 +13,7 @@ const {
   size = 'md',
   fullWidth = false,
   href,
+  target,
   class: className = '',
 } = Astro.props;
 
@@ -35,7 +37,7 @@ const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${widthClass}
 ---
 
 {href ? (
-  <a href={href} class={classes}>
+  <a href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} class={classes}>
     <slot />
   </a>
 ) : (
