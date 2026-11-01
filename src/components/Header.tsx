@@ -39,7 +39,7 @@ export default function Header() {
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://forms.fillout.com/t/wagPsDFc3jus"
+            href="https://buy.stripe.com/7sY3cv2UA7ogbsI7RVbjW00"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center font-display uppercase tracking-wider border-2 border-dark transition-all duration-200 focus:outline-none bg-dark text-white shadow-neo hover:bg-gray-900 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(18,18,18,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none text-sm px-6 py-3"
@@ -64,7 +64,7 @@ export default function Header() {
         <div className="md:hidden absolute top-full left-0 w-full bg-secondary border-b-2 border-dark p-6 flex flex-col gap-6 shadow-xl">
           <nav className="flex flex-col gap-4 text-center">
             <a
-              href="https://forms.fillout.com/t/wagPsDFc3jus"
+              href="https://buy.stripe.com/7sY3cv2UA7ogbsI7RVbjW00"
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl font-black text-dark hover:text-white hover:stroke-dark transition-colors uppercase tracking-widest font-display"
@@ -84,7 +84,7 @@ export default function Header() {
             ))}
           </nav>
           <a
-            href="https://forms.fillout.com/t/wagPsDFc3jus"
+            href="https://buy.stripe.com/7sY3cv2UA7ogbsI7RVbjW00"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMobileMenuOpen(false)}
