@@ -4,7 +4,7 @@ Description: A custom block theme scaffolded by Studio Code.
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.2
-Version: 0.3.3
+Version: 0.3.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: jollof-factory
@@ -235,7 +235,7 @@ Tags: full-site-editing, block-patterns, block-styles, wide-blocks, accessibilit
 	   the photo must paint above the opaque orange overlay. */
 	z-index: 1 !important;
 	filter: grayscale(1);
-	opacity: 0.45;
+	mix-blend-mode: multiply;
 }
 .jollof-hero-title {
 	text-shadow: 4px 4px 0 #121212;
@@ -522,6 +522,9 @@ ol.jollof-steps > li::before {
 }
 
 /* === story page === */
+.jf-polaroid {
+	padding: 12px;
+}
 .jf-highlight {
 	background-color: var(--wp--preset--color--secondary);
 	padding: 0 4px;
